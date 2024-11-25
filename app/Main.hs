@@ -41,7 +41,6 @@ readXY bd p = do
     let bdSize = length bd
     let playerPrompt = [playerToChar p] ++ "'s turn: enter x and y (1-" ++ show bdSize ++ " or -1 to quit)? "
     (x, y) <- getCord playerPrompt
-    putStrLn $ "Player " ++ show p ++ " entered: " ++ show (x, y)
     if x == -1 && y == -1 then do
         return (-1,-1)
     else if x < 1 || x > bdSize || y < 1 || y > bdSize then do
