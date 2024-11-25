@@ -13,13 +13,13 @@ checkTwoInts input =
         [aStr] -> case readInt aStr of
             Just a | a == -1 -> Just (a, -1) -- special case for -1, return (a, -1)
             _                -> Nothing      -- invalid if not -1
-        _ -> Nothing                         -- otherwise, return nothing
+        _  -> Nothing                        -- otherwise, return nothing
 
 -- helper function to safely read an integer
 readInt :: String -> Maybe Int
 readInt str = case reads str of
     [(n, "")] -> Just n   -- parsed int successfuly
-    _          -> Nothing -- parsed int failed
+    _         -> Nothing  -- parsed int failed
 
 -- get cords from input
 getCord :: String -> IO (Int, Int)
