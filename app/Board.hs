@@ -82,11 +82,11 @@ columns bd = [column (x + 1) bd | x <- [0..size bd - 1]]
 
 -- diagnoal: top left to bottom right 
 diagonalsTLBR :: [[Int]] -> [[Int]]
-diagonalsTLBR bd = let bdSize = length bd in [ [bd !! (i + k) !! k | k <- [0..min (bdSize - 1 - i) (bdSize - 1)]] | i <- [0..bdSize - 1]]
+diagonalsTLBR bd = let bdSize = length bd in [[bd !! (i + k) !! k | k <- [0..min (bdSize - 1 - i) (bdSize - 1)]] | i <- [0..bdSize - 1]]
 
 -- diagonal: bottom left to top right
 diagonalsBLTR :: [[Int]] -> [[Int]]
-diagonalsBLTR bd = let bdSize = length bd in [ [bd !! (i - k) !! k | k <- [0..min i (bdSize - 1 - j)]] | i <- [bdSize - 1, bdSize - 2..0], j <- [0..bdSize - 1] ]
+diagonalsBLTR bd = let bdSize = length bd in [[bd !! (i - k) !! k | k <- [0..min i (bdSize - 1 - j)]] | i <- [bdSize - 1, bdSize - 2..0], j <- [0..bdSize - 1]]
 
 -- check if game is a draw
 isDraw :: [[Int]] -> Bool
