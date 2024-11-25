@@ -66,10 +66,7 @@ boardToStr charConverter bd =
 
 -- check if the board has a winning row, column, or diagonal for player p
 isWonBy :: [[Int]] -> Int -> Bool
-isWonBy bd p = any (fiveInRow p) bd ||
-               any (fiveInRow p) (columns bd) ||
-               any (fiveInRow p) (diagonalsTLBR bd) ||
-               any (fiveInRow p) (diagonalsBLTR bd)
+isWonBy bd p = any (fiveInRow p) bd || any (fiveInRow p) (columns bd) || any (fiveInRow p) (diagonalsTLBR bd) ||any (fiveInRow p) (diagonalsBLTR bd)
 
 -- Helper function to check for 5 consecutive pieces
 fiveInRow :: Int -> [Int] -> Bool
@@ -85,15 +82,11 @@ columns bd = [column (x + 1) bd | x <- [0..size bd - 1]]
 
 -- diagnoal: top left to bottom right 
 diagonalsTLBR :: [[Int]] -> [[Int]]
-diagonalsTLBR bd =
-  let bdSize = length bd
-  in [ [bd !! (i + k) !! k | k <- [0..min (bdSize - 1 - i) (bdSize - 1)]] | i <- [0..bdSize - 1]]
+diagonalsTLBR bd = let bdSize = length bd in [ [bd !! (i + k) !! k | k <- [0..min (bdSize - 1 - i) (bdSize - 1)]] | i <- [0..bdSize - 1]]
 
 -- diagnoal: bottom left to top right 
 diagonalsBLTR :: [[Int]] -> [[Int]]
-diagonalsBLTR bd =
-  let bdSize = length bd
-  in [ [bd !! (i + k) !! (bdSize - 1 - k) | k <- [0..min (bdSize - 1 - i) (bdSize - 1)]] | i <- [0..bdSize - 1]]
+diagonalsBLTR bd = let bdSize = length bd in [ [bd !! (i + k) !! (bdSize - 1 - k) | k <- [0..min (bdSize - 1 - i) (bdSize - 1)]] | i <- [0..bdSize - 1]]
 
 -- check if game is a draw
 isDraw :: [[Int]] -> Bool
@@ -102,5 +95,3 @@ isDraw bd = isFull bd && not (isWonBy bd 1) && not (isWonBy bd 2)
 -- check if game is a draw
 isGameOver :: [[Int]] -> Bool
 isGameOver bd = isDraw bd || isWonBy bd 1 || isWonBy bd 2
-
-

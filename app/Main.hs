@@ -3,7 +3,6 @@ module Main where
 import System.IO
 import Board
 
-
 -- check if input can be split into two valid integers
 checkTwoInts :: String -> Maybe (Int, Int)
 checkTwoInts input =
@@ -56,7 +55,6 @@ readXY bd p = do
     else do
         putStrLn "Error: Unexpected condition!"
         return (-1,-1)
-
 
 -- main game loop
 playOmok :: Int -> [[Int]] -> IO ()
