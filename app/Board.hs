@@ -68,13 +68,13 @@ boardToStr charConverter bd =
 isWonBy :: [[Int]] -> Int -> Bool
 isWonBy bd p = any (fiveInRow p) bd || any (fiveInRow p) (columns bd) || any (fiveInRow p) (diagonalsTLBR bd) ||any (fiveInRow p) (diagonalsBLTR bd)
 
--- Helper function to check for 5 consecutive pieces
+-- check for 5 consecutive pieces
 fiveInRow :: Int -> [Int] -> Bool
-fiveInRow p r = any (all (== p)) (sliding 5 r)
+fiveInRow p r = any (all (== p)) (sliding r)
 
--- Generate sliding windows of size n over a list
-sliding :: Int -> [a] -> [[a]]
-sliding n xs = [take n (drop i xs) | i <- [0..length xs - n]]
+-- sliding window over list
+sliding :: [a] -> [[a]]
+sliding xs = [take 5 (drop i xs) | i <- [0..length xs - 5]]
 
 -- get all cols
 columns :: [[Int]] -> [[Int]]
