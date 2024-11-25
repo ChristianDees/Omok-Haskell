@@ -34,7 +34,6 @@ mark x y board player =
       -- replace old row with new row
   in take (y - 1) board ++ [newRow] ++ drop y board
 
-
 -- check if cords are empty 
 isEmpty :: Int -> Int -> [[Int]] -> Bool
 isEmpty x y bd = (bd !! (x - 1)) !! (y - 1) == 0
@@ -64,13 +63,8 @@ playerToChar _ = '.'
 -- represent board with string
 boardToStr :: (Int -> Char) -> [[Int]] -> String
 boardToStr charConverter bd =
-  let -- header for columns (1->size of board.. wraps after 9)
-      header = " x " ++ unwords [show (i `mod` 10) | i <- [1..size bd]] ++ "\n"
-      -- create each row based on their player type (also 1-size of board.. wraps after 9)
-      rows = zipWith (\y r ->  
-                      show (y `mod` 10) ++ "|" ++
-                      concatMap (\x -> " " ++ [charConverter (r !! x)]) [0..(size bd - 1)] ++ "\n") 
-                      [1..] bd
-      -- add dashes under first header
-      dashLine = replicate (size bd * 2) '-' 
-  in header ++ "y " ++ dashLine ++ "\n" ++ concat rows
+  let sizeBd = length (head bd)  -- size of the board (assumed square or uniform rows)
+      -- column header (1-size of board, wrap at 9)
+      columnHeader = " x " ++ unwords [show (i `mod` 10) | i <- [1..sizeBd]] ++ "\n" ++ "y " ++ replicate (sizeBd * 2) '-' ++ "\n"
+      -- each row header (1-size of board, wrap at 9)
+  in columnHeader ++ concat [show (y `mod` 10) ++ "|" ++ concatMap (\x -> " " ++ [charConverter (r !! x)]) [0..sizeBd-1] ++ "\n" | (y, r) <- zip ([1 :: Int ..] :: [Int]) bd]
