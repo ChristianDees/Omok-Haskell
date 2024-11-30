@@ -1,9 +1,9 @@
+-- Authors: Christian Dees and Aitiana Mondragon
 module Main where
 
 import System.IO
-import Board
-
 import System.Random
+import Board
 
 -- map player number to a character
 playerToChar :: Int -> Char

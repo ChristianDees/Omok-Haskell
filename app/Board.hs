@@ -1,3 +1,4 @@
+-- Authors: Christian Dees and Aitiana Mondragon
 module Board where
 
 -- create 2d array, 0's = empty 
