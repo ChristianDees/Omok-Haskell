@@ -3,6 +3,12 @@ module Main where
 import System.IO
 import Board
 
+-- map player number to a character
+playerToChar :: Int -> Char
+playerToChar 1 = 'X'
+playerToChar 2 = 'O'
+playerToChar _ = '.'
+
 -- check if input can be split into two valid integers
 checkTwoInts :: String -> Maybe (Int, Int)
 checkTwoInts input =

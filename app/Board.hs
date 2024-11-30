@@ -51,12 +51,6 @@ isMarkedBy x y bd p = marker x y bd == p
 isFull :: [[Int]] -> Bool
 isFull = all (notElem 0)
 
--- map player number to a character
-playerToChar :: Int -> Char
-playerToChar 1 = 'X'
-playerToChar 2 = 'O'
-playerToChar _ = '.'
-
 -- represent board with string
 boardToStr :: (Int -> Char) -> [[Int]] -> String
 boardToStr charConverter bd =
